@@ -400,7 +400,7 @@
   .func-item-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
 
   /* ── DEMOS ── */
-  .demo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .demo-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
   .demo-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
     padding: 2.25rem 2rem; text-decoration: none; color: inherit;
@@ -472,6 +472,7 @@
     section { padding: 4rem 1.75rem; }
     .about-grid, .deepdive-grid, .contact-section { grid-template-columns: 1fr; gap: 2.5rem; }
     .demo-grid, .func-list { grid-template-columns: 1fr; }
+    .demo-grid .demo-card:first-child { grid-column: 1; }
     .workflow-steps { grid-template-columns: 1fr 1fr; }
     .workflow-step + .workflow-step { border-left: none; }
     .workflow-step:nth-child(odd) { border-right: 1px solid var(--border); }
@@ -737,25 +738,36 @@
 
 <!-- DEMOS -->
 <section id="demos">
-  <div class="section-eyebrow"><span>03 — Open Source</span></div>
-  <h2>Concepts behind<br/>the production system.</h2>
+  <div class="section-eyebrow"><span>03 — Projects</span></div>
+  <h2>Personal &amp; open<br/>source work.</h2>
   <p style="color:var(--muted);font-weight:300;max-width:58ch;font-size:0.97rem;">
-    VisionAlignSuite is proprietary. These three demos isolate the core technical patterns — buildable, runnable, and fully documented.
+    A mix of personal projects and technical demos — each one exploring a different corner of the stack.
   </p>
   <div class="demo-grid">
-    <a href="https://github.com/YOUR_USERNAME/Demo1_WPF_CppInterop" target="_blank" class="demo-card c1 reveal">
+    <a href="https://github.com/AnqiZhu19/SipPlate" target="_blank" class="demo-card c1" style="position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:160px;overflow:hidden;border-radius:4px 4px 0 0;margin:-2rem -2rem 0 -2rem;">
+        <img src="sipplate_screenshot.png" alt="SipPlate" style="width:100%;height:160px;object-fit:cover;object-position:top;opacity:0.92;" />
+      </div>
+      <div style="margin-top:148px;">
+        <div class="demo-num">Featured Project · React + FastAPI + Electron</div>
+        <h3>SipPlate — Breakfast Journal</h3>
+        <p>Cross-platform desktop journaling app with a visual plate designer. Drag food emoji onto a customizable plate, track your mood, write notes, and use Gemini AI to auto-arrange your plate from a text description. Built with React, FastAPI, and Electron.</p>
+        <span class="demo-link">View on GitHub</span>
+      </div>
+    </a>
+    <a href="https://github.com/AnqiZhu19/Demo1_WPF_CppInterop" target="_blank" class="demo-card c2">
       <div class="demo-num">Demo 01 · C# + C++</div>
       <h3>WPF ↔ Native C++ Interop</h3>
-      <p>Architecture-complete P/Invoke demonstration. A .NET 8 WPF app calls into a CMake-built C++ DLL via DllImport with explicit CallingConvention. Mirrors the managed-to-native boundary in Align.Algorithm.</p>
+      <p>Architecture-complete P/Invoke demonstration. A .NET 8 WPF app calls into a CMake-built C++ DLL via DllImport with explicit CallingConvention. Mirrors the managed-to-native boundary in VisionAlignSuite.</p>
       <span class="demo-link">View on GitHub</span>
     </a>
-    <a href="https://github.com/YOUR_USERNAME/Demo2_QtJsonEditor" target="_blank" class="demo-card c2 reveal">
+    <a href="https://github.com/AnqiZhu19/Demo2_QtJsonEditor" target="_blank" class="demo-card c2">
       <div class="demo-num">Demo 02 · Qt + JSON</div>
       <h3>Device Config Table Editor</h3>
       <p>Qt Widgets application showing the device configuration UI pattern: table-driven editing, per-row controls (checkbox, color picker), and full JSON persistence via QJsonDocument.</p>
       <span class="demo-link">View on GitHub</span>
     </a>
-    <a href="https://github.com/YOUR_USERNAME/Demo3_OpenCV_Pipeline" target="_blank" class="demo-card c3 reveal">
+    <a href="https://github.com/AnqiZhu19/Demo3_OpenCV_Pipeline" target="_blank" class="demo-card c3">
       <div class="demo-num">Demo 03 · OpenCV</div>
       <h3>Vision Pipeline with Live Tuning</h3>
       <p>Real-time OpenCV pipeline: Gaussian blur → Hough circle detection → crosshair overlay. All detection parameters exposed via interactive trackbars for live calibration.</p>
