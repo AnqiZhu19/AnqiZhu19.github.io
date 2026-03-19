@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anqi Zhu — Software Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:       #faf8f5;
+    --bg2:      #f3efe9;
+    --surface:  #ffffff;
+    --border:   #e8e0d6;
+    --border2:  #d4c9bc;
+    --rose:     #c9736a;
+    --rose-lt:  #f0dbd9;
+    --sand:     #b89880;
+    --sand-lt:  #ede4d8;
+    --ink:      #2c2520;
+    --muted:    #8c7d72;
+    --serif:    'Playfair Display', Georgia, serif;
+    --display:  'Cormorant Garamond', Georgia, serif;
+    --sans:     'Jost', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 3.5rem;
+    background: rgba(250,248,245,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3.5rem 4rem;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-deco {
+    position: absolute;
+    top: 10%; right: 2%;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 1.4s ease forwards 0.9s;
+  }
+  .hero-deco::after {
+    content: '';
+    position: absolute; inset: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--rose-lt);
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 30px; height: 1px; background: var(--rose);
+  }
+  .hero-eyebrow span {
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rose);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 6vw, 5.8rem);
+    line-height: 1.06;
+    color: var(--ink);
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.35s;
+  }
+  .hero h1 em { font-style: italic; color: var(--rose); }
+
+  .hero-sub {
+    margin-top: 1.75rem;
+    font-size: 0.97rem;
+    color: var(--muted);
+    max-width: 44ch;
+    font-weight: 300;
+    line-height: 1.85;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-top: 2.75rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s; cursor: pointer; border: none;
+    border-radius: 2px;
+  }
+  .btn-primary { background: var(--rose); color: #fff; }
+  .btn-primary:hover { background: #b8635a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,115,106,0.3); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border2); }
+  .btn-outline:hover { border-color: var(--sand); color: var(--sand); transform: translateY(-2px); }
+
+  /* hero right — stat cards */
+  .hero-right {
+    display: flex; flex-direction: column; gap: 1.25rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+  .hero-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.6rem 2rem;
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .hero-stat::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--rose);
+  }
+  .hero-stat:hover { box-shadow: 0 10px 32px rgba(44,37,32,0.08); transform: translateY(-2px); }
+  .hero-stat-num {
+    font-family: var(--display);
+    font-size: 2.6rem; font-weight: 300;
+    color: var(--ink); line-height: 1;
+  }
+  .hero-stat-num em { font-style: italic; color: var(--rose); }
+  .hero-stat-label {
+    font-size: 0.75rem; font-weight: 300;
+    color: var(--muted); margin-top: 0.35rem;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 3.5rem;
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; gap: 0.75rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 1s;
+  }
+  .hero-scroll::after { content: ''; display: block; width: 34px; height: 1px; background: var(--border2); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border2), transparent);
+    margin: 0 3.5rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3.5rem; max-width: 1200px; margin: 0 auto; }
+
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--rose);
+  }
+  .section-eyebrow span {
+    font-size: 0.68rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rose); font-weight: 400;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.18; color: var(--ink); margin-bottom: 1.5rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem; align-items: start; margin-top: 3rem;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1.1rem; font-weight: 300; font-size: 0.97rem; }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .skill-cell {
+    background: var(--surface); padding: 1.25rem 1.4rem; transition: background 0.2s;
+  }
+  .skill-cell:hover { background: var(--bg2); }
+  .skill-cell-label {
+    font-size: 0.65rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--rose); font-weight: 500; margin-bottom: 0.7rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .tag {
+    font-size: 0.7rem; color: var(--muted);
+    background: var(--bg2); border: 1px solid var(--border);
+    padding: 0.18rem 0.6rem; border-radius: 20px; font-weight: 400;
+  }
+
+  /* ── FEATURED ── */
+  .featured-wrapper {
+    margin-top: 3rem;
+    border: 1px solid var(--border); border-radius: 6px;
+    overflow: hidden; background: var(--surface);
+    box-shadow: 0 4px 40px rgba(44,37,32,0.06);
+  }
+  .featured-header {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: start; gap: 2rem;
+    padding: 3rem 3.5rem;
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+  }
+  .featured-title {
+    font-family: var(--serif); font-size: 2.2rem; color: var(--ink);
+  }
+  .featured-title em { font-style: italic; color: var(--rose); }
+  .featured-subtitle { font-size: 0.88rem; color: var(--muted); font-weight: 300; margin-top: 0.4rem; }
+  .company-badge {
+    display: inline-block; font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--sand);
+    border: 1px solid var(--sand-lt); background: var(--surface);
+    padding: 0.3rem 0.9rem; border-radius: 20px; font-weight: 500; white-space: nowrap;
+  }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: flex-end; margin-top: 0.75rem; }
+
+  /* ── ARCH ── */
+  .arch-section { padding: 3rem 3.5rem; border-bottom: 1px solid var(--border); }
+  .arch-label {
+    font-size: 0.65rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 2rem;
+  }
+  .arch-row { display: flex; gap: 0; }
+  .arch-node {
+    flex: 1; padding: 1.4rem 1.6rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s; cursor: default;
+  }
+  .arch-node:hover { border-color: var(--rose); background: rgba(240,219,217,0.18); }
+  .arch-node + .arch-node { border-left: none; }
+  .arch-row + .arch-row .arch-node { border-top: none; }
+  .arch-node.accent-rose { border-top: 2px solid var(--rose); }
+  .arch-node.accent-sand { border-top: 2px solid var(--sand); }
+  .arch-node.accent-warm { border-top: 2px solid #c4a882; }
+  .arch-node-name { font-family: var(--serif); font-size: 0.95rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .arch-node-lang { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.6rem; font-weight: 500; }
+  .arch-node-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .arch-connector {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0.5rem 3.5rem; position: relative;
+  }
+  .arch-connector::before {
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 1px; background: var(--border); transform: translateX(-50%);
+  }
+  .arch-connector-label {
+    font-size: 0.65rem; letter-spacing: 0.08em; color: var(--muted);
+    background: var(--surface); padding: 0.2rem 0.85rem;
+    border: 1px solid var(--border); border-radius: 20px; position: relative; z-index: 1;
+  }
+  .workflow-steps {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    margin-top: 2rem; border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .workflow-step {
+    padding: 1.25rem 1.5rem; background: var(--bg2);
+    transition: background 0.2s;
+  }
+  .workflow-step:hover { background: var(--rose-lt); }
+  .workflow-step + .workflow-step { border-left: 1px solid var(--border); }
+  .step-num { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose); font-weight: 500; margin-bottom: 0.5rem; }
+  .step-text { font-size: 0.82rem; color: var(--ink); line-height: 1.5; font-weight: 300; }
+
+  /* ── SCREENSHOTS ── */
+  .screenshots-section { padding: 3rem 3.5rem; border-bottom: 1px solid var(--border); }
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .screenshot-item {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border); border-radius: 4px;
+    background: #1a1a1a;
+    cursor: pointer;
+  }
+  .screenshot-item img {
+    width: 100%; display: block;
+    transition: transform 0.4s ease, opacity 0.3s;
+    opacity: 0.92;
+  }
+  .screenshot-item:hover img { transform: scale(1.02); opacity: 1; }
+  .screenshot-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(to top, rgba(44,37,32,0.85), transparent);
+    font-size: 0.72rem; color: rgba(255,255,255,0.9);
+    font-weight: 300; letter-spacing: 0.04em;
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+  .screenshot-item:hover .screenshot-caption { transform: translateY(0); }
+
+  /* lightbox */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(44,37,32,0.92); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 2rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 88vh;
+    border-radius: 4px; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+  .lightbox-close {
+    position: absolute; top: 1.5rem; right: 2rem;
+    font-size: 1.5rem; color: rgba(255,255,255,0.7);
+    cursor: pointer; background: none; border: none;
+    transition: color 0.2s; line-height: 1;
+  }
+  .lightbox-close:hover { color: #fff; }
+
+  /* ── DEEP DIVE ── */
+  .deepdive-section { padding: 3rem 3.5rem; border-bottom: 1px solid var(--border); }
+  .deepdive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .deepdive-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+    padding: 1.75rem; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .deepdive-card:hover { box-shadow: 0 8px 28px rgba(44,37,32,0.07); transform: translateY(-2px); }
+  .deepdive-card h4 { font-family: var(--serif); font-size: 1rem; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.4; }
+  .deepdive-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .deepdive-card p strong { color: var(--ink); font-weight: 500; }
+
+  /* ── PARACONFIG ── */
+  .submod-section { padding: 3rem 3.5rem; }
+  .submod-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .submod-badge {
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sand); border: 1px solid var(--sand-lt);
+    padding: 0.2rem 0.7rem; border-radius: 20px; font-weight: 500;
+  }
+  .submod-title { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+  .submod-desc { font-size: 0.875rem; color: var(--muted); font-weight: 300; margin-bottom: 1.75rem; max-width: 72ch; }
+  .func-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .func-item {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.25rem 1.4rem; transition: background 0.2s;
+  }
+  .func-item:hover { background: var(--rose-lt); }
+  .func-item-title { font-size: 0.82rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+  .func-item-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── DEMOS ── */
+  .demo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .demo-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2.25rem 2rem; text-decoration: none; color: inherit;
+    transition: all 0.25s; display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  .demo-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+  }
+  .demo-card.c1::after { background: var(--rose); }
+  .demo-card.c2::after { background: var(--sand); }
+  .demo-card.c3::after { background: #b08060; }
+  .demo-card:hover { box-shadow: 0 16px 48px rgba(44,37,32,0.1); transform: translateY(-4px); }
+  .demo-card:hover::after { transform: scaleX(1); }
+  .demo-num { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 1.1rem; }
+  .demo-card h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.85rem; line-height: 1.35; }
+  .demo-card p { font-size: 0.84rem; color: var(--muted); font-weight: 300; line-height: 1.7; flex: 1; margin-bottom: 1.75rem; }
+  .demo-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--rose); text-decoration: none; font-weight: 500; transition: gap 0.2s;
+  }
+  .demo-link::after { content: '→'; }
+  .demo-card:hover .demo-link { gap: 0.8rem; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 6rem 3.5rem; max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .contact-text p { color: var(--muted); font-weight: 300; font-size: 0.97rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1.25rem;
+    text-decoration: none; color: var(--ink); font-size: 0.87rem; font-weight: 300;
+    padding: 1.1rem 1.4rem; border: 1px solid var(--border); border-radius: 4px;
+    transition: all 0.2s; background: var(--surface);
+  }
+  .contact-link:hover { border-color: var(--rose); color: var(--rose); transform: translateX(4px); box-shadow: 0 4px 20px rgba(201,115,106,0.1); }
+  .contact-link-icon { font-size: 0.72rem; color: var(--rose); width: 20px; text-align: center; font-weight: 500; }
+
+  footer {
+    text-align: center; padding: 2.5rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.1rem 1.75rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.75rem 3rem; }
+    .hero-deco { display: none; }
+    .hero-right { flex-direction: row; flex-wrap: wrap; }
+    .hero-stat { flex: 1; min-width: 150px; }
+    section { padding: 4rem 1.75rem; }
+    .about-grid, .deepdive-grid, .contact-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .demo-grid, .func-list { grid-template-columns: 1fr; }
+    .workflow-steps { grid-template-columns: 1fr 1fr; }
+    .workflow-step + .workflow-step { border-left: none; }
+    .workflow-step:nth-child(odd) { border-right: 1px solid var(--border); }
+    .workflow-step:nth-child(n+3) { border-top: 1px solid var(--border); }
+    .arch-row { flex-direction: column; }
+    .arch-node + .arch-node { border-left: 1px solid var(--border); border-top: none; }
+    .featured-header { grid-template-columns: 1fr; }
+    .tech-stack { justify-content: flex-start; }
+    .arch-section, .deepdive-section, .submod-section { padding: 2rem 1.75rem; }
+    .contact-section { padding: 4rem 1.75rem; }
+    .divider { margin: 0 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Anqi <span>Zhu</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#visionalign">Work</a>
+    <a href="#demos">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="background:var(--bg);">
+<div class="hero">
+  <div class="hero-deco"></div>
+
+  <div>
+    <div class="hero-eyebrow"><span>Software Engineer · Systems &amp; Vision</span></div>
+    <h1>Anqi<br/><em>Ashley</em><br/>Zhu</h1>
+    <p class="hero-sub">Building industrial desktop software where native C++ performance meets elegant managed UIs. Currently studying Computer Science at the University of Waterloo.</p>
+    <div class="hero-actions">
+      <a href="#visionalign" class="btn btn-primary">Featured Work</a>
+      <a href="#demos" class="btn btn-outline">Open Source</a>
+      <a href="mailto:azzhu@uwaterloo.ca" class="btn btn-outline">Say Hello</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3<em>+</em></div>
+      <div class="hero-stat-label">Production systems shipped at Sioux Technologies</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><em>2</em></div>
+      <div class="hero-stat-label">Waterloo faculty scholarships, 2025–2026</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">C<em>++</em></div>
+      <div class="hero-stat-label">Native vision algorithms · OpenCV · MVVM architecture</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">Scroll to explore</div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow"><span>01 — About</span></div>
+  <h2>Systems thinking,<br/>from pixel to protocol.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a Computer Science student at Waterloo with hands-on industry experience building <strong>production industrial desktop software</strong> — the kind that runs on a factory floor and controls real hardware in real time.</p>
+      <p>My internship at <strong>Sioux Technologies</strong> gave me deep exposure to mixed-language architectures: C# for MVVM desktop UIs, C++ for performance-critical vision algorithms, and TCP/IP for hardware communication — all integrated into a single, maintainable system.</p>
+      <p>I care about clean architecture, explicit abstractions, and software that an engineer two years from now can actually understand and extend.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-cell">
+        <div class="skill-cell-label">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">C#</span><span class="tag">C++</span><span class="tag">Python</span>
+          <span class="tag">TypeScript</span><span class="tag">Java</span><span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-cell-label">Frameworks</div>
+        <div class="skill-tags">
+          <span class="tag">WPF / .NET</span><span class="tag">OpenCV</span><span class="tag">React</span>
+          <span class="tag">Electron</span><span class="tag">FastAPI</span><span class="tag">Qt</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-cell-label">Patterns</div>
+        <div class="skill-tags">
+          <span class="tag">MVVM</span><span class="tag">Plugin Arch.</span><span class="tag">P/Invoke</span>
+          <span class="tag">TCP/IP</span><span class="tag">REST</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-cell-label">Tools</div>
+        <div class="skill-tags">
+          <span class="tag">CMake</span><span class="tag">Git</span><span class="tag">Docker</span>
+          <span class="tag">GDB</span><span class="tag">Linux</span><span class="tag">VS 2022</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED -->
+<section id="visionalign" style="padding-top:5rem;">
+  <div class="section-eyebrow"><span>02 — Featured Project</span></div>
+  <h2>Industrial software<br/>built for real constraints.</h2>
+
+  <div class="featured-wrapper reveal">
+    <div class="featured-header">
+      <div>
+        <div class="featured-title">Vision<em>Align</em>Suite</div>
+        <div class="featured-subtitle">Optical Alignment &amp; Calibration Desktop System</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="company-badge">Sioux Technologies · Sep–Dec 2025</div>
+        <div class="tech-stack">
+          <span class="tag">C#</span><span class="tag">WPF</span><span class="tag">C++</span>
+          <span class="tag">OpenCV</span><span class="tag">MVVM</span><span class="tag">CMake</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-section">
+      <div class="arch-label">System Architecture — Multi-layer Visual Studio Solution</div>
+      <div class="arch-row">
+        <div class="arch-node accent-rose" style="flex:2;">
+          <div class="arch-node-name">Align.Client</div>
+          <div class="arch-node-lang">C# / WPF / .NET</div>
+          <div class="arch-node-desc">Desktop client: MVVM-structured UI, user interaction, workflow orchestration, result visualization. DataBinding connects ViewModels to live camera and algorithm output.</div>
+        </div>
+      </div>
+      <div class="arch-connector"><span class="arch-connector-label">MVVM binding · service injection</span></div>
+      <div class="arch-row">
+        <div class="arch-node accent-sand">
+          <div class="arch-node-name">Align.Base</div>
+          <div class="arch-node-lang">C# Class Library</div>
+          <div class="arch-node-desc">Shared interfaces, data models, utilities. The contract layer — defines what Camera plugins and Algorithm modules must expose.</div>
+        </div>
+        <div class="arch-node accent-sand">
+          <div class="arch-node-name">ParaConfig Module</div>
+          <div class="arch-node-lang">C# / WPF</div>
+          <div class="arch-node-desc">Device parameter management over TCP. MAC address, homing direction, current limits — write + read-back verification with centralized logging.</div>
+        </div>
+      </div>
+      <div class="arch-connector"><span class="arch-connector-label">P/Invoke · DllImport · IntPtr marshalling</span></div>
+      <div class="arch-row">
+        <div class="arch-node accent-warm">
+          <div class="arch-node-name">Align.Algorithm</div>
+          <div class="arch-node-lang">C++ Native Library</div>
+          <div class="arch-node-desc">Performance-critical image processing: feature detection, position offset computation, calibration logic. Isolated from UI — zero WPF dependency.</div>
+        </div>
+        <div class="arch-node accent-warm">
+          <div class="arch-node-name">Plugin.Camera.*</div>
+          <div class="arch-node-lang">C# Plugin Modules</div>
+          <div class="arch-node-desc">Per-camera SDK adapters (e.g. Hikvision). Each implements a unified ICamera interface. New hardware = new plugin, zero changes to core system.</div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <div class="arch-label">Typical Workflow</div>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-num">01 · Acquire</div>
+            <div class="step-text">Camera plugin captures frame via SDK, delivers to client</div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">02 · Process</div>
+            <div class="step-text">Image passed to C++ algorithm layer via P/Invoke boundary</div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">03 · Compute</div>
+            <div class="step-text">Native code computes alignment offset &amp; calibration result</div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">04 · Visualize</div>
+            <div class="step-text">Result bound to WPF ViewModel, displayed and logged</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="screenshots-section">
+      <div class="arch-label">Software in Action — click to enlarge</div>
+      <div class="screenshots-grid">
+        <div class="screenshot-item" onclick="openLightbox('screenshot1.png')">
+          <img src="screenshot1.png" alt="Alignment workflow — live camera feed with crosshair overlay" />
+          <div class="screenshot-caption">Alignment workflow · live camera feed · step pipeline</div>
+        </div>
+        <div class="screenshot-item" onclick="openLightbox('screenshot2.png')">
+          <img src="screenshot2.png" alt="Pmask light uniformity step — ROI measurement results" />
+          <div class="screenshot-caption">Pmask uniformity step · exposure params · ROI measurement result</div>
+        </div>
+        <div class="screenshot-item" onclick="openLightbox('screenshot3.png')">
+          <img src="screenshot3.png" alt="Tube lens assembly — circle detection overlay with ΔX/ΔY offset readout" />
+          <div class="screenshot-caption">Tube lens assembly · circle detection · ΔX/ΔY offset · real-time log</div>
+        </div>
+        <div class="screenshot-item" onclick="openLightbox('screenshot4.png')">
+          <img src="screenshot4.png" alt="ParaConfig tab — MAC address, homing direction, current limit configuration" />
+          <div class="screenshot-caption">ParaConfig tab · MAC config · homing direction · current limit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+
+    <div class="deepdive-section">
+      <div class="arch-label">Engineering Decisions</div>
+      <div class="deepdive-grid">
+        <div class="deepdive-card">
+          <h4>Why C++ for the algorithm layer?</h4>
+          <p>Industrial image processing runs on every frame at acquisition speed — typically 30–120 fps. Managed C# has GC pauses and cannot use SIMD intrinsics as freely as native C++. Isolating algorithms in <strong>Align.Algorithm</strong> as a native DLL means the hot path never competes with UI scheduling or garbage collection.</p>
+        </div>
+        <div class="deepdive-card">
+          <h4>Why MVVM throughout?</h4>
+          <p>Industrial software has a long maintenance tail — operators modify UI requirements frequently while algorithms stay stable. <strong>MVVM</strong> enforces a hard separation: ViewModels expose observable state; Views bind to it. UI changes never touch business logic, and ViewModels can be unit-tested without any UI framework.</p>
+        </div>
+        <div class="deepdive-card">
+          <h4>Why a plugin system for cameras?</h4>
+          <p>A factory may run several different camera models across product lines. The <strong>Plugin.Camera.*</strong> pattern — each vendor SDK wrapped behind a shared ICamera interface — means hardware can be swapped or added without modifying, recompiling, or retesting the core inspection logic.</p>
+        </div>
+        <div class="deepdive-card">
+          <h4>TCP + closed-loop verification</h4>
+          <p>Device configuration over TCP is inherently unreliable. The <strong>ParaConfig</strong> module uses a write → query → compare loop: every parameter write is followed by a read-back before confirming success to the operator. This eliminated a class of silent misconfiguration bugs difficult to diagnose in production.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="submod-section">
+      <div class="submod-header">
+        <span class="submod-badge">Sub-module</span>
+        <span class="submod-title">ParaConfig — Device Parameter Configuration</span>
+      </div>
+      <p class="submod-desc">A self-contained module for commissioning and configuring board-level devices via TCP. Every operation exposes a write path, a read-back verification, and a status indicator.</p>
+      <div class="func-list">
+        <div class="func-item">
+          <div class="func-item-title">MAC Address Config</div>
+          <div class="func-item-desc">Auto-generate MAC from serial number → write via TCP → read back and verify. Used during initial device deployment.</div>
+        </div>
+        <div class="func-item">
+          <div class="func-item-title">Homing Direction Config</div>
+          <div class="func-item-desc">Set positive/negative homing direction for motion axes → confirm via read-back. Ensures safe reset per mechanical constraints.</div>
+        </div>
+        <div class="func-item">
+          <div class="func-item-title">Current Limit Config</div>
+          <div class="func-item-desc">Distribute target current across multi-channel outputs → write → verify consistency. Prevents over-current faults in production.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEMOS -->
+<section id="demos">
+  <div class="section-eyebrow"><span>03 — Open Source</span></div>
+  <h2>Concepts behind<br/>the production system.</h2>
+  <p style="color:var(--muted);font-weight:300;max-width:58ch;font-size:0.97rem;">
+    VisionAlignSuite is proprietary. These three demos isolate the core technical patterns — buildable, runnable, and fully documented.
+  </p>
+  <div class="demo-grid">
+    <a href="https://github.com/YOUR_USERNAME/Demo1_WPF_CppInterop" target="_blank" class="demo-card c1 reveal">
+      <div class="demo-num">Demo 01 · C# + C++</div>
+      <h3>WPF ↔ Native C++ Interop</h3>
+      <p>Architecture-complete P/Invoke demonstration. A .NET 8 WPF app calls into a CMake-built C++ DLL via DllImport with explicit CallingConvention. Mirrors the managed-to-native boundary in Align.Algorithm.</p>
+      <span class="demo-link">View on GitHub</span>
+    </a>
+    <a href="https://github.com/YOUR_USERNAME/Demo2_QtJsonEditor" target="_blank" class="demo-card c2 reveal">
+      <div class="demo-num">Demo 02 · Qt + JSON</div>
+      <h3>Device Config Table Editor</h3>
+      <p>Qt Widgets application showing the device configuration UI pattern: table-driven editing, per-row controls (checkbox, color picker), and full JSON persistence via QJsonDocument.</p>
+      <span class="demo-link">View on GitHub</span>
+    </a>
+    <a href="https://github.com/YOUR_USERNAME/Demo3_OpenCV_Pipeline" target="_blank" class="demo-card c3 reveal">
+      <div class="demo-num">Demo 03 · OpenCV</div>
+      <h3>Vision Pipeline with Live Tuning</h3>
+      <p>Real-time OpenCV pipeline: Gaussian blur → Hough circle detection → crosshair overlay. All detection parameters exposed via interactive trackbars for live calibration.</p>
+      <span class="demo-link">View on GitHub</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-text reveal">
+    <div class="section-eyebrow"><span>04 — Contact</span></div>
+    <h2>Let's build<br/>something together.</h2>
+    <p>Open to internship opportunities for Winter/Summer 2026. Interested in systems software, computer vision, and desktop application development.</p>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:azzhu@uwaterloo.ca" class="contact-link">
+      <span class="contact-link-icon">@</span>azzhu@uwaterloo.ca
+    </a>
+    <a href="https://linkedin.com/in/anqi-zhu-8904aa364" target="_blank" class="contact-link">
+      <span class="contact-link-icon">in</span>linkedin.com/in/anqi-zhu-8904aa364
+    </a>
+    <a href="https://github.com/YOUR_USERNAME" target="_blank" class="contact-link">
+      <span class="contact-link-icon">gh</span>github.com/YOUR_USERNAME
+    </a>
+  </div>
+</div>
+
+<footer>Built with HTML · CSS · Vanilla JS &nbsp;·&nbsp; GitHub Pages &nbsp;·&nbsp; © 2026 Anqi Zhu</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach(el => obs.observe(el));
+
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
