@@ -252,6 +252,9 @@
     overflow: hidden; background: var(--surface);
     box-shadow: 0 4px 40px rgba(44,37,32,0.06);
   }
+  .featured-wrapper.secondary {
+    box-shadow: none;
+  }
   .featured-header {
     display: grid; grid-template-columns: 1fr auto;
     align-items: start; gap: 2rem;
@@ -426,6 +429,7 @@
   }
   .demo-link::after { content: '→'; }
   .demo-card:hover .demo-link { gap: 0.8rem; }
+  .demo-link-row { display: flex; gap: 1.5rem; }
 
   /* ── CONTACT ── */
   .contact-section {
@@ -493,7 +497,7 @@
   <a href="#" class="nav-logo">Anqi <span>Zhu</span></a>
   <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#visionalign">Work</a>
+    <a href="#apollocloud">Work</a>
     <a href="#demos">Projects</a>
     <a href="#contact">Contact</a>
   </div>
@@ -505,11 +509,11 @@
   <div class="hero-deco"></div>
 
   <div>
-    <div class="hero-eyebrow"><span>Software Engineer · Systems &amp; Vision</span></div>
+    <div class="hero-eyebrow"><span>Software Engineer · Full-Stack &amp; Robotics</span></div>
     <h1>Anqi<br/><em>Ashley</em><br/>Zhu</h1>
-    <p class="hero-sub">Building industrial desktop software where native C++ performance meets elegant managed UIs. Currently studying Computer Science at the University of Waterloo.</p>
+    <p class="hero-sub">Building full-stack robotics software that turns visual programming into real ROS2 behavior — and industrial desktop systems where native C++ meets elegant managed UIs. Currently a Full Stack Developer co-op at Studica, studying Computer Science (AI Specialization) at the University of Waterloo.</p>
     <div class="hero-actions">
-      <a href="#visionalign" class="btn btn-primary">Featured Work</a>
+      <a href="#apollocloud" class="btn btn-primary">Featured Work</a>
       <a href="#demos" class="btn btn-outline">Open Source</a>
       <a href="mailto:azzhu@uwaterloo.ca" class="btn btn-outline">Say Hello</a>
     </div>
@@ -517,16 +521,16 @@
 
   <div class="hero-right">
     <div class="hero-stat">
-      <div class="hero-stat-num">3<em>+</em></div>
-      <div class="hero-stat-label">Production systems shipped at Sioux Technologies</div>
+      <div class="hero-stat-num">25<em>+</em></div>
+      <div class="hero-stat-label">ROS2 subsystems regression-tested weekly at Studica</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num"><em>2</em></div>
       <div class="hero-stat-label">Waterloo faculty scholarships, 2025–2026</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">C<em>++</em></div>
-      <div class="hero-stat-label">Native vision algorithms · OpenCV · MVVM architecture</div>
+      <div class="hero-stat-num">3<em>+</em></div>
+      <div class="hero-stat-label">Internships spanning full-stack, robotics, and computer vision</div>
     </div>
   </div>
 
@@ -542,8 +546,9 @@
   <h2>Systems thinking,<br/>from pixel to protocol.</h2>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>I'm a Computer Science student at Waterloo with hands-on industry experience building <strong>production industrial desktop software</strong> — the kind that runs on a factory floor and controls real hardware in real time.</p>
-      <p>My internship at <strong>Sioux Technologies</strong> gave me deep exposure to mixed-language architectures: C# for MVVM desktop UIs, C++ for performance-critical vision algorithms, and TCP/IP for hardware communication — all integrated into a single, maintainable system.</p>
+      <p>I'm a Computer Science student at Waterloo (AI Specialization) with hands-on industry experience spanning <strong>full-stack robotics software</strong> and <strong>production industrial desktop systems</strong>.</p>
+      <p>At <strong>Studica Limited</strong>, I build Apollo Cloud, a browser-based platform that lets students program real robots with Blockly — spanning a React/TypeScript client, a Node.js/Express server, and a ROS2/C++ robot stack with Nav2 navigation and closed-loop motor control.</p>
+      <p>Earlier, my internship at <strong>Sioux Technologies</strong> gave me deep exposure to mixed-language architectures: C# for MVVM desktop UIs, C++ for performance-critical vision algorithms, and TCP/IP for hardware communication.</p>
       <p>I care about clean architecture, explicit abstractions, and software that an engineer two years from now can actually understand and extend.</p>
     </div>
     <div class="skills-grid reveal">
@@ -562,6 +567,13 @@
         </div>
       </div>
       <div class="skill-cell">
+        <div class="skill-cell-label">Robotics</div>
+        <div class="skill-tags">
+          <span class="tag">ROS2</span><span class="tag">Nav2</span><span class="tag">SLAM</span>
+          <span class="tag">AMCL</span><span class="tag">Blockly</span>
+        </div>
+      </div>
+      <div class="skill-cell">
         <div class="skill-cell-label">Patterns</div>
         <div class="skill-tags">
           <span class="tag">MVVM</span><span class="tag">Plugin Arch.</span><span class="tag">P/Invoke</span>
@@ -575,18 +587,151 @@
           <span class="tag">GDB</span><span class="tag">Linux</span><span class="tag">VS 2022</span>
         </div>
       </div>
+      <div class="skill-cell">
+        <div class="skill-cell-label">Cloud &amp; AI</div>
+        <div class="skill-tags">
+          <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">OpenAI / Gemini</span>
+          <span class="tag">RAG</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- FEATURED -->
-<section id="visionalign" style="padding-top:5rem;">
+<!-- FEATURED: APOLLO CLOUD (STUDICA) -->
+<section id="apollocloud" style="padding-top:5rem;">
   <div class="section-eyebrow"><span>02 — Featured Project</span></div>
-  <h2>Industrial software<br/>built for real constraints.</h2>
+  <h2>Full-stack robotics,<br/>from browser to hardware.</h2>
 
   <div class="featured-wrapper reveal">
+    <div class="featured-header">
+      <div>
+        <div class="featured-title">Apollo<em>Cloud</em></div>
+        <div class="featured-subtitle">Browser-Based Robot Programming Platform</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="company-badge">Studica Limited · May–Aug 2026</div>
+        <div class="tech-stack">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span>
+          <span class="tag">ROS2</span><span class="tag">C++</span><span class="tag">Nav2</span><span class="tag">Blockly</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-section">
+      <div class="arch-label">System Architecture — Browser to Robot</div>
+      <div class="arch-row">
+        <div class="arch-node accent-rose" style="flex:2;">
+          <div class="arch-node-name">Apollo.Client</div>
+          <div class="arch-node-lang">React / TypeScript</div>
+          <div class="arch-node-desc">Browser-based robot programming IDE: Blockly visual blocks, project/workspace management, an in-browser map editor, and a map-free MOBA teleoperation mode. Live camera, LiDAR, and pose telemetry stream back into the UI.</div>
+        </div>
+      </div>
+      <div class="arch-connector"><span class="arch-connector-label">REST API · WebSocket telemetry</span></div>
+      <div class="arch-row">
+        <div class="arch-node accent-sand">
+          <div class="arch-node-name">Apollo.Server</div>
+          <div class="arch-node-lang">Node.js / Express</div>
+          <div class="arch-node-desc">Hardware config propagation, program lifecycle, and map storage across dedicated service modules for hardware, processes, maps, workspaces, and projects.</div>
+        </div>
+        <div class="arch-node accent-sand">
+          <div class="arch-node-name">Launch Generator</div>
+          <div class="arch-node-lang">ROS2 Launch Templates</div>
+          <div class="arch-node-desc">Compiles Blockly block trees into ROS2 Python launch templates — the bridge between visual programming and real robot behavior.</div>
+        </div>
+      </div>
+      <div class="arch-connector"><span class="arch-connector-label">ROS2 launch generation · rosbridge</span></div>
+      <div class="arch-row">
+        <div class="arch-node accent-warm">
+          <div class="arch-node-name">Motor Control</div>
+          <div class="arch-node-lang">ROS2 / C++</div>
+          <div class="arch-node-desc">Closed-loop PWM/PID control across differential, mecanum, and two newly implemented modes — X-drive and two-wheel drive — with encoder feedback for accurate speed and distance.</div>
+        </div>
+        <div class="arch-node accent-warm">
+          <div class="arch-node-name">Navigation &amp; Vision</div>
+          <div class="arch-node-lang">ROS2 / OpenCV</div>
+          <div class="arch-node-desc">LiDAR SLAM mapping, odometry-based Nav2 path planning, AMCL localization, and an OpenCV camera pipeline for calibration.</div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <div class="arch-label">Typical Workflow</div>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-num">01 · Program</div>
+            <div class="step-text">Student drags Blockly blocks to define robot behavior in the browser</div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">02 · Generate</div>
+            <div class="step-text">Server compiles the block program into a ROS2 launch template</div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">03 · Execute</div>
+            <div class="step-text">Robot stack runs motor control, navigation, and vision nodes on-device</div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-num">04 · Visualize</div>
+            <div class="step-text">Live map, camera, and telemetry stream back into the browser UI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deepdive-section">
+      <div class="arch-label">Engineering Decisions</div>
+      <div class="deepdive-grid">
+        <div class="deepdive-card">
+          <h4>Why Blockly instead of a code editor?</h4>
+          <p>Apollo Cloud's audience is K-12 students and instructors, not professional developers. <strong>Blockly</strong> lowers the barrier to entry while still compiling down to real ROS2 Python — a student's first robot program is genuine working code, not a simulated toy.</p>
+        </div>
+        <div class="deepdive-card">
+          <h4>Why separate drive modes instead of one control scheme?</h4>
+          <p>Differential, mecanum, X-drive, and two-wheel chassis have fundamentally different kinematics. Each gets its own ROS2 node, sharing a common <strong>PWM/PID + encoder-feedback</strong> loop so speed and distance commands stay accurate across every base.</p>
+        </div>
+        <div class="deepdive-card">
+          <h4>Why SLAM, Nav2, and AMCL together?</h4>
+          <p><strong>SLAM</strong> builds the occupancy map, <strong>AMCL</strong> localizes the robot within it, and <strong>Nav2</strong> plans and executes paths. Separating mapping from localization lets the robot navigate reliably even after leaving and re-entering a mapped space.</p>
+        </div>
+        <div class="deepdive-card">
+          <h4>Why harden deployment with udev and uhubctl?</h4>
+          <p>The operator in a classroom is a student or instructor, not an engineer. Deterministic USB port mapping (<strong>udev</strong>) and automatic USB recovery (<strong>uhubctl</strong>) mean a loose cable or enumeration hiccup doesn't stall a lesson.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="submod-section">
+      <div class="submod-header">
+        <span class="submod-badge">Sub-module</span>
+        <span class="submod-title">Motor Control — Closed-Loop Drive System</span>
+      </div>
+      <p class="submod-desc">A shared control layer across every chassis type Apollo Cloud supports. Each drive mode exposes the same PWM/PID interface, so navigation and Blockly movement blocks work identically regardless of the underlying hardware.</p>
+      <div class="func-list">
+        <div class="func-item">
+          <div class="func-item-title">X-Drive Mode</div>
+          <div class="func-item-desc">Newly implemented holonomic drive node built from scratch, with PWM smoothing and input conditioning for the four-wheel X configuration.</div>
+        </div>
+        <div class="func-item">
+          <div class="func-item-title">Two-Wheel Drive Mode</div>
+          <div class="func-item-desc">A second newly implemented mode for simpler two-motor chassis, sharing the same encoder-feedback control loop as the other drive types.</div>
+        </div>
+        <div class="func-item">
+          <div class="func-item-title">PWM/PID Encoder Feedback</div>
+          <div class="func-item-desc">Closed-loop control reads encoder RPM to keep speed and distance commands accurate across differential, mecanum, X-drive, and two-wheel bases.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED: VISIONALIGNSUITE (SIOUX) -->
+<section id="visionalign" style="padding-top:5rem;">
+  <div class="section-eyebrow"><span>03 — Also Shipped</span></div>
+  <h2>Industrial software<br/>built for real constraints.</h2>
+
+  <div class="featured-wrapper secondary reveal">
     <div class="featured-header">
       <div>
         <div class="featured-title">Vision<em>Align</em>Suite</div>
@@ -738,12 +883,21 @@
 
 <!-- DEMOS -->
 <section id="demos">
-  <div class="section-eyebrow"><span>03 — Projects</span></div>
+  <div class="section-eyebrow"><span>04 — Projects</span></div>
   <h2>Personal &amp; open<br/>source work.</h2>
   <p style="color:var(--muted);font-weight:300;max-width:58ch;font-size:0.97rem;">
-    A mix of personal projects and technical demos — each one exploring a different corner of the stack.
+    A mix of personal projects, an in-progress robotics build, and technical demos — each one exploring a different corner of the stack.
   </p>
   <div class="demo-grid">
+    <div class="demo-card c1">
+      <div class="demo-num">In Progress · ROS2 Jazzy + TensorFlow Lite + OpenCV</div>
+      <h3>ROS2 Initiator Drone</h3>
+      <p>Drone perception stack, built with a friend, that tracks people from an Orbbec RGB-D stream using TensorFlow Lite EfficientDet-Lite0 detection with IoU-based multi-frame tracking. Fully tunable via YAML without a rebuild, with a rosbridge-backed web dashboard for live annotated video.</p>
+      <div class="demo-link-row">
+        <a href="https://github.com/Andrew-Heng-Yong/ros2-initiator-drone" target="_blank" class="demo-link">ROS2 Stack</a>
+        <a href="https://github.com/Andrew-Heng-Yong/frontend-initiator-drone" target="_blank" class="demo-link">Dashboard</a>
+      </div>
+    </div>
     <a href="https://github.com/AnqiZhu19/SipPlate" target="_blank" class="demo-card c1" style="position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:160px;overflow:hidden;border-radius:4px 4px 0 0;margin:-2rem -2rem 0 -2rem;">
         <img src="sipplate_screenshot.png" alt="SipPlate" style="width:100%;height:160px;object-fit:cover;object-position:top;opacity:0.92;" />
@@ -790,9 +944,9 @@
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
   <div class="contact-text reveal">
-    <div class="section-eyebrow"><span>04 — Contact</span></div>
+    <div class="section-eyebrow"><span>05 — Contact</span></div>
     <h2>Let's build<br/>something together.</h2>
-    <p>Open to internship opportunities for Winter/Summer 2026. Interested in systems software, computer vision, and desktop application development.</p>
+    <p>Open to future opportunities in robotics, full-stack engineering, and computer vision.</p>
   </div>
   <div class="contact-links reveal">
     <a href="mailto:azzhu@uwaterloo.ca" class="contact-link">
